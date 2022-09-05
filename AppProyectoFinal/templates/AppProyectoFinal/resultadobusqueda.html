@@ -1,0 +1,30 @@
+{% extends "AppProyectoFinal/padre.html" %}
+
+{% load static %}
+
+
+
+
+
+{% block contenido_cambia %}
+
+
+<h1>RESULTADOS</h1>
+{% if mensaje %}
+<h2>{{ mensaje }}</h2>
+
+
+{% else %}
+
+
+<h1>BUSCAMOS AMIGOS POR DNI</h1>
+
+{% for pet in amigos %}
+<h2>{{ pet.nombre }}</h2>
+<h2>{{ pet.dni }}</h2>
+
+----
+{% endfor %}
+{% endif %}
+{% endblock %}
+

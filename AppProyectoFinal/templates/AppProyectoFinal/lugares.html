@@ -1,0 +1,26 @@
+{% extends "AppProyectoFinal/padre.html" %}
+
+{% load static %}
+
+
+{% block contenido %}
+
+<h1>Lugares para visitar</h1>
+
+
+{% endblock %}
+
+{% block contenido_cambia %}
+
+<h1>FORMULARIO DE LUGARES</h1>
+<form action="{% url 'lugares' %}" method="POST"> {% csrf_token %}
+<table>
+
+    {{ formulario.as_table }}
+
+</table>
+<input type="submit", value="ENVIAR">
+
+</form>
+{% endblock %}
+

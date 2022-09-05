@@ -1,0 +1,30 @@
+
+{% extends "AppProyectoFinal/padre.html" %}
+
+{% load static %}
+
+
+{% block contenido %}
+
+<h1>Conoce a los amigos de Nara!</h1>
+
+{% endblock %}
+
+
+{% block contenido_cambia %}
+<h3>INSCRIBE A TUS AMIGOS</h3>
+
+<form action="{% url 'amigos' %}" method="POST"> {% csrf_token %}
+<table>
+
+    {{ formulario.as_table }}
+
+</table>
+<input type="submit", value="ENVIAR">
+
+</form>
+
+<div>
+
+
+{% endblock %}
