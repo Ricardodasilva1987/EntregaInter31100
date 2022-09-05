@@ -125,3 +125,4 @@ def buscar(request):
     else:
         return render(request,"AppProyectoFinal/resultadobusqueda.html",{"mensaje":"No hay DNI"})
     
+"""hola mundo"""
