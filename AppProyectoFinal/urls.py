@@ -14,5 +14,8 @@ urlpatterns = [
     path("comida/",comida, name="comida"),
     path("busquedaDni/",busquedaDni,name="busquedadni"),
     path("resultadobusqueda/",buscar,name="buscar"),
+    path("leerAmigos/",leerAmigos,name="leerAmigos"),
+    path("eliminarAmigo/<id>",eliminarAmigos,name="eliminarAmigo"),
+    path("editarAmigo/<id>",editarAmigos,name="editarAmigo"),
 
 ]

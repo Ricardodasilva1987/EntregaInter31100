@@ -125,4 +125,43 @@ def buscar(request):
     else:
         return render(request,"AppProyectoFinal/resultadobusqueda.html",{"mensaje":"No hay DNI"})
     
-"""hola mundo"""
+#ver amigos en un html
+
+def leerAmigos(request):
+
+    amiguitos = Amigo.objects.all()
+    return render(request,"AppProyectoFinal/leerAmigos.html",{"Amiguitos":amiguitos})
+
+#Eliminar amigos
+def eliminarAmigos(request, id):
+    pet = Amigo.objects.get(id=id)
+    pet.delete()
+    amiguitos = Amigo.objects.all()
+    return render(request,"AppProyectoFinal/leerAmigos.html",{"Amiguitos":amiguitos})
+
+#editar amigos
+
+def editarAmigos(request,id):
+
+    amigo = Amigo.objects.get(id=id)
+    if request.method=="POST":
+        form=AmigosFormulario(request.POST)
+        if form.is_valid():
+            info = form.cleaned_data
+            amigo.nombre= info["nombre"]
+            amigo.raza = info["raza"]
+            amigo.dni = info["dni"]
+            amigo.duenio = info["duenio"]
+            amigo.save()
+            amiguitos = Amigo.objects.all()
+            return render(request,"AppProyectoFinal/leerAmigos.html",{"Amiguitos":amiguitos})
+    else:
+        form =AmigosFormulario(initial={"nombre":amigo.nombre,"raza":amigo.raza,"dni":amigo.dni,"duenio":amigo.duenio})
+        return render(request,"AppProyectoFinal/editarAmigo.html",{"formulario":form, "nombre_amigo":amigo.nombre ,"Id":amigo.id})
+
+                
+
+
+    
+
+    
