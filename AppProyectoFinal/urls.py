@@ -17,5 +17,7 @@ urlpatterns = [
     path("leerAmigos/",leerAmigos,name="leerAmigos"),
     path("eliminarAmigo/<id>",eliminarAmigos,name="eliminarAmigo"),
     path("editarAmigo/<id>",editarAmigos,name="editarAmigo"),
+    path("login/",login_request,name="login"),
+    path("register/",registro,name="register"),
 
 ]

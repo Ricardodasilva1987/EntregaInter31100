@@ -1,4 +1,5 @@
 from django import forms
+from django.contrib.auth.forms import UserCreationForm
 
 class AmigosFormulario(forms.Form):
     nombre =forms.CharField(max_length=30)
@@ -24,3 +25,6 @@ class ComidaFormulario(forms.Form):
     nombre=forms.CharField(max_length=30)
     calorias = forms.IntegerField()
     recomendable = forms.BooleanField()
+
+#class UserRegisterForm(UserCreationForm):
+

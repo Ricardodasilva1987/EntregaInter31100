@@ -8,6 +8,9 @@ from django.template import Context,Template,loader
 from django.shortcuts import render
 from .models import *
 from .forms import *
+from django.views.generic import ListView
+from django.contrib.auth.forms import AuthenticationForm,UserCreationForm
+from django.contrib.auth import login,logout,authenticate
 
 def miprimersaludo(request):
     return HttpResponse("hola es mi primer view")
@@ -160,6 +163,42 @@ def editarAmigos(request,id):
         return render(request,"AppProyectoFinal/editarAmigo.html",{"formulario":form, "nombre_amigo":amigo.nombre ,"Id":amigo.id})
 
                 
+#######################################
+#login logout register
+
+def login_request(request):
+    if request.method =="POST":
+        form = AuthenticationForm(request, data=request.POST)
+        if form.is_valid():
+            usu=request.POST["username"]
+            clave=request.POST["password"]
+
+            usuario = authenticate(username=usu,password=clave)
+            if usuario is not None:
+                login(request,usuario)
+                return render(request,"AppProyectoFinal/inicio.html",{'mensaje':f"Bienvenido {usuario}"})
+            else:
+                return render(request,"AppProyectoFinal/login.html",{'form':form,'mensaje':'Usuario o contrasenia incorrecto'})
+        else:
+            return render(request,"AppProyectoFinal/login.html", {'form':form,'mensaje':'Formulario Invalido'})
+    
+    else:
+        form = AuthenticationForm()
+        return render(request,"AppProyectoFinal/login.html",{'form':form})
+
+def registro(request):
+    if request.method=="POST":
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            username=form.cleaned_data["username"]
+            form.save()
+            return render(request,"AppProyectoFinal/inicio.html",{'mensaje': f"{username} creado"})
+    else:
+        form=UserCreationForm()
+    return render(request,"AppProyectoFinal/registro.html",{'form':form})
+
+
+
 
 
     
