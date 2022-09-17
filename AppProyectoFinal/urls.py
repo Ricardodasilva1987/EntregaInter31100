@@ -21,5 +21,7 @@ urlpatterns = [
     path("login/",login_request,name="login"),
     path("register/",registro,name="register"),
     path("logout/",LogoutView.as_view(template_name='AppProyectoFinal/logout.html'),name="logout"),
+    path("editarperfil/",editarPerfil,name="editarperfil"),
 
 ]
+ 

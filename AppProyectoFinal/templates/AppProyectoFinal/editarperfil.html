@@ -1,0 +1,32 @@
+
+{% extends "AppProyectoFinal/padre.html" %}
+
+{% load static %}
+
+
+{% block contenido %}
+
+<h1>EDICION DE PERFIL</h1>
+
+{% endblock %}
+
+
+{% block contenido_cambia %}
+<h3>FORMULARIO DE EDICION DE PERFIL {{ usuario }}</h3>
+<H4>{{ mensaje }}</H4>
+
+<form action="{% url 'editarperfil' %}" method="POST"> {% csrf_token %}
+
+
+    {{ form.as_p }}
+    <button type="submit">GUARDAR CAMBIOS</button>
+
+
+
+
+</form>
+
+<div>
+
+
+{% endblock %}

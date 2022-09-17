@@ -200,6 +200,29 @@ def registro(request):
 
 
 
+@login_required
+def editarPerfil(request):
+        usuario = request.user
+        if request.method =="POST":
+            form = UserEditForm(request.POST, instance=usuario)
+            if form.is_valid():
+                info =form.cleaned_data
+                
+                usuario.email=info["email"]
+                usuario.password1=info["password1"]
+                usuario.password2=info["password2"]
+                usuario.first_name=info["first_name"]
+                usuario.last_name =info["last_name"]
+
+                usuario.save()
+                return render(request,'AppProyectoFinal/inicio.html',{'mensaje':f'Perfil de {usuario} editado'})
+        else:
+            form= UserEditForm(instance=usuario)
+        return render(request, 'AppProyectoFinal/editarperfil.html',{'form':form , 'usuario': usuario})
+
+            
+
+
 
 
     
