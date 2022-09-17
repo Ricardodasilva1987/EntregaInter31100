@@ -2,6 +2,7 @@ from django.urls import path
 from .views import *
 from .models import *
 from .forms import *
+from django.contrib.auth.views import LogoutView
 
 urlpatterns = [
     
@@ -19,5 +20,6 @@ urlpatterns = [
     path("editarAmigo/<id>",editarAmigos,name="editarAmigo"),
     path("login/",login_request,name="login"),
     path("register/",registro,name="register"),
+    path("logout/",LogoutView.as_view(template_name='AppProyectoFinal/logout.html'),name="logout"),
 
 ]

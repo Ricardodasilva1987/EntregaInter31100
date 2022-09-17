@@ -11,6 +11,7 @@ from .forms import *
 from django.views.generic import ListView
 from django.contrib.auth.forms import AuthenticationForm,UserCreationForm
 from django.contrib.auth import login,logout,authenticate
+from django.contrib.auth.decorators import login_required
 
 def miprimersaludo(request):
     return HttpResponse("hola es mi primer view")
@@ -28,7 +29,7 @@ def inicio(request):
 
 
 
-
+@login_required
 def formularioinicio(request):
 
     if request.method=="POST":
@@ -129,7 +130,7 @@ def buscar(request):
         return render(request,"AppProyectoFinal/resultadobusqueda.html",{"mensaje":"No hay DNI"})
     
 #ver amigos en un html
-
+@login_required
 def leerAmigos(request):
 
     amiguitos = Amigo.objects.all()
